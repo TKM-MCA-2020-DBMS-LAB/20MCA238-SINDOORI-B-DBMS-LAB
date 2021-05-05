@@ -1,0 +1,52 @@
+1: 
+create database userinfo;
+2: 
+use userinfo;
+
+3;  
+create table employee (emp_no int(10)  not null , emp_name varchar(20) not null , dob date not null , address varchar(25) not null , doj date not null , mobile_no int(20) not null , dept_no int(10) not null , salary int(10) not null , primary key(emp_no) , foreign key(dept_no) references department(dept_no));
+create table department(dept_no int(10) not null , dept_name varchar(20) not null , location varchar(20) not null , primary key(dept_no)); 
+
+
+4:   
+insert into employee (emp_no,emp_name,dob,address,doj,mobile_no,dept_no,salary)values(12345,'akhil','1980-05-12','kakkadad house','2020-04-25',984562137,212,15000);
+insert into employee (emp_no,emp_name,dob,address,doj,mobile_no,dept_no,salary)values(12545,'arjun','1988-05-02','pala house','2019-08-25',982261378,212,16000);
+insert into employee (emp_no,emp_name,dob,address,doj,mobile_no,dept_no,salary)values(12349,'manu','1990-05-12','permbu house','2020-11-15',984665378,222,12500);
+insert into employee (emp_no,emp_name,dob,address,doj,mobile_no,dept_no,salary)values(12355,'varun','1990-08-22','ajml house','2021-04-15',984621998,252,18000);
+insert into employee (emp_no,emp_name,dob,address,doj,mobile_no,dept_no,salary)values(12343,'amal','1988-06-13','vija house','2019-04-05',984621399,222,15000);
+
+insert into department (dept_no,dept_name,location) values(212,'mechincal','firstfloor');
+insert into department (dept_no,dept_name,location) values(222,'electrical','groundfloor');
+insert into department (dept_no,dept_name,location) values(252,'techincal','firstfloor');
+
+
+
+5:  
+show tables;
+describe employee;
+describe department;
+
+6:  
+select * from employee;
+select * from department;
+
+
+7:   
+alter table employee add manager varchar(20) not null;
+
+
+8:   
+alter table department drop location;
+
+
+9:  
+drop table employee; 
+drop table department;
+
+
+10:
+drop database userinfo;
+
+
+
+
