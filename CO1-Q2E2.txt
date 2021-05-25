@@ -1,0 +1,200 @@
+mysql> create database bank;
+Query OK, 1 row affected (0.14 sec)
+
+mysql> use bank;
+Database changed
+mysql> create table customer(cid int,cname varchar(20),loc varchar(20),sex varchar(20),dob date);
+Query OK, 0 rows affected (1.59 sec)
+
+mysql> create table bank_brn(bcode int,bloc varchar(20),bsate varchar(20));
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> create table deposit(dacno int,dtype varchar(20),ddate date,damt varchar(20));
+Query OK, 0 rows affected (0.60 sec)
+
+mysql> create table loan(lacno int,ltype varchar(20),ldate date,lamt varchar(20));
+Query OK, 0 rows affected (0.43 sec)
+
+
+mysql> create table accountc_in(bcode int,cid int);
+Query OK, 0 rows affected (0.82 sec)
+
+mysql> create table depositor(cid int,dacno int);
+Query OK, 0 rows affected (0.44 sec)
+
+mysql> create table borrower(cid int,lacno int);
+Query OK, 0 rows affected (0.36 sec)
+
+mysql> show tables;
++----------------+
+| Tables_in_bank |
++----------------+
+| accountc_in    |
+| bank_brn       |
+| borrower       |
+| customer       |
+| deposit        |
+| depositor      |
+| loan           |
++----------------+
+7 rows in set (0.08 sec)
+
+
+mysql> describe accountc_in;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| bcode | int  | YES  |     | NULL    |       |
+| cid   | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.10 sec)
+
+mysql> describe bank_brn;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| bcode | int         | YES  |     | NULL    |       |
+| bloc  | varchar(20) | YES  |     | NULL    |       |
+| bsate | varchar(20) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> describe borrower;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| cid   | int  | YES  |     | NULL    |       |
+| lacno | int  | YES  |     | NULL    |       |
++-------+------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> describe customer;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| cid   | int         | YES  |     | NULL    |       |
+| cname | varchar(20) | YES  |     | NULL    |       |
+| loc   | varchar(20) | YES  |     | NULL    |       |
+| sex   | varchar(20) | YES  |     | NULL    |       |
+| dob   | date        | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+
+
+mysql> drop table loan;
+Query OK, 0 rows affected (0.53 sec)
+
+mysql> delete table loan;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
