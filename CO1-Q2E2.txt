@@ -1,0 +1,804 @@
+mysql> create database college;
+Query OK, 1 row affected (0.74 sec)
+
+mysql> use college;
+Database changed
+mysql> create table student(sid int, sname varchar(25), sex varchar(15),dob date,dno int);
+Query OK, 0 rows affected (1.84 sec)
+
+mysql> create table department(dno int,dname varchar(20));
+Query OK, 0 rows affected (0.51 sec)
+
+mysql> create table faculty (fid int  not null , fname varchar(20), designation varchar(20), salary int ,dno int);
+Query OK, 0 rows affected (1.11 sec)
+
+mysql> create table course (cid int not null, cname varchar(20), credits int ,dno int);
+Query OK, 0 rows affected (1.41 sec)
+
+mysql> create table register (sid int not null,cid int not null,sem varchar(20));
+Query OK, 0 rows affected (0.92 sec)
+
+mysql> create table teaching (fid int not null ,cid int,sem varchar(20));
+Query OK, 0 rows affected (1.97 sec)
+
+mysql> create table hostel(hid int not null,hname varchar(20),seats int);
+Query OK, 0 rows affected (0.84 sec)
+
+mysql> show tables;
++-------------------+
+| Tables_in_college |
++-------------------+
+| course            |
+| department        |
+| faculty           |
+| hostel            |
+| register          |
+| student           |
+| teaching          |
++-------------------+
+7 rows in set (0.33 sec)
+
+mysql> SELECT *FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_SCHEMA='college'\G
+*************************** 1. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: course
+             COLUMN_NAME: cid
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: NO
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 2. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: course
+             COLUMN_NAME: cname
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 3. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: course
+             COLUMN_NAME: credits
+        ORDINAL_POSITION: 3
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 4. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: course
+             COLUMN_NAME: dno
+        ORDINAL_POSITION: 4
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 5. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: department
+             COLUMN_NAME: dname
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 6. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: department
+             COLUMN_NAME: dno
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 7. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: faculty
+             COLUMN_NAME: designation
+        ORDINAL_POSITION: 3
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 8. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: faculty
+             COLUMN_NAME: dno
+        ORDINAL_POSITION: 5
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 9. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: faculty
+             COLUMN_NAME: fid
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: NO
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 10. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: faculty
+             COLUMN_NAME: fname
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 11. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: faculty
+             COLUMN_NAME: salary
+        ORDINAL_POSITION: 4
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 12. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: hostel
+             COLUMN_NAME: hid
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: NO
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 13. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: hostel
+             COLUMN_NAME: hname
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 14. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: hostel
+             COLUMN_NAME: seats
+        ORDINAL_POSITION: 3
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 15. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: register
+             COLUMN_NAME: cid
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: NO
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 16. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: register
+             COLUMN_NAME: sem
+        ORDINAL_POSITION: 3
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 17. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: register
+             COLUMN_NAME: sid
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: NO
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 18. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: student
+             COLUMN_NAME: dno
+        ORDINAL_POSITION: 5
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 19. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: student
+             COLUMN_NAME: dob
+        ORDINAL_POSITION: 4
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: date
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: date
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 20. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: student
+             COLUMN_NAME: sex
+        ORDINAL_POSITION: 3
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 15
+  CHARACTER_OCTET_LENGTH: 60
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(15)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 21. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: student
+             COLUMN_NAME: sid
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 22. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: student
+             COLUMN_NAME: sname
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 25
+  CHARACTER_OCTET_LENGTH: 100
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(25)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 23. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: teaching
+             COLUMN_NAME: cid
+        ORDINAL_POSITION: 2
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 24. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: teaching
+             COLUMN_NAME: fid
+        ORDINAL_POSITION: 1
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: NO
+               DATA_TYPE: int
+CHARACTER_MAXIMUM_LENGTH: NULL
+  CHARACTER_OCTET_LENGTH: NULL
+       NUMERIC_PRECISION: 10
+           NUMERIC_SCALE: 0
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: NULL
+          COLLATION_NAME: NULL
+             COLUMN_TYPE: int
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+*************************** 25. row ***************************
+           TABLE_CATALOG: def
+            TABLE_SCHEMA: college
+              TABLE_NAME: teaching
+             COLUMN_NAME: sem
+        ORDINAL_POSITION: 3
+          COLUMN_DEFAULT: NULL
+             IS_NULLABLE: YES
+               DATA_TYPE: varchar
+CHARACTER_MAXIMUM_LENGTH: 20
+  CHARACTER_OCTET_LENGTH: 80
+       NUMERIC_PRECISION: NULL
+           NUMERIC_SCALE: NULL
+      DATETIME_PRECISION: NULL
+      CHARACTER_SET_NAME: utf8mb4
+          COLLATION_NAME: utf8mb4_0900_ai_ci
+             COLUMN_TYPE: varchar(20)
+              COLUMN_KEY:
+                   EXTRA:
+              PRIVILEGES: select,insert,update,references
+          COLUMN_COMMENT:
+   GENERATION_EXPRESSION:
+                  SRS_ID: NULL
+25 rows in set (0.11 sec)
+
+mysql>
+mysql> alter table student add grade varchar(20);
+Query OK, 0 rows affected (1.93 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> ^C
+mysql> describe course;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| cid     | int         | NO   |     | NULL    |       |
+| cname   | varchar(20) | YES  |     | NULL    |       |
+| credits | int         | YES  |     | NULL    |       |
+| dno     | int         | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.05 sec)
+
+mysql> insert into course(cid,cname,credits,dno)values(1,'MECH',5,111);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into course(cid,cname,credits,dno)values(2,'MCA',4,222);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into course(cid,cname,credits,dno)values(3,'MBA',7,322);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into course(cid,cname,credits,dno)values(4,'MTECH',3,212);
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into course(cid,cname,credits,dno)values(5,'CIVIL',6,232);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> ^C
+mysql> select * from course;
++-----+-------+---------+------+
+| cid | cname | credits | dno  |
++-----+-------+---------+------+
+|   1 | MECH  |       5 |  111 |
+|   2 | MCA   |       4 |  222 |
+|   3 | MBA   |       7 |  322 |
+|   4 | MTECH |       3 |  212 |
+|   5 | CIVIL |       6 |  232 |
++-----+-------+---------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into faculty(fid,fname,designation,salary,dno)values(412,'Raj','lab-staff',20000,111);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into faculty(fid,fname,designation,salary,dno)values(512,'Lal','Office-staff',27000,222);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into faculty(fid,fname,designation,salary,dno)values(612,'Fousiya','Guest-lectr',50000,322);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into faculty(fid,fname,designation,salary,dno)values(752,'Nadeera','Prof.',75000,212);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into faculty(fid,fname,designation,salary,dno)values(752,'Nadeera','Prof.',75000,212);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from faculty;
++-----+---------+--------------+--------+------+
+| fid | fname   | designation  | salary | dno  |
++-----+---------+--------------+--------+------+
+| 412 | Raj     | lab-staff    |  20000 |  111 |
+| 512 | Lal     | Office-staff |  27000 |  222 |
+| 612 | Fousiya | Guest-lectr  |  50000 |  322 |
+| 752 | Nadeera | Prof.        |  75000 |  212 |
+| 752 | Nadeera | Prof.        |  75000 |  212 |
++-----+---------+--------------+--------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into register(sid,cid,sem)values(101,1,'I');
+Query OK, 1 row affected (0.28 sec)
+
+mysql> insert into register(sid,cid,sem)values(102,2,'III');
+Query OK, 1 row affected (0.13 sec)
+
+mysql> insert into register(sid,cid,sem)values(103,3,'II');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> ^C
+mysql> insert into register(sid,cid,sem)values(104,4,'IV');
+Query OK, 1 row affected (0.12 sec)
+
+mysql> insert into register(sid,cid,sem)values(105,5,'VI');
+Query OK, 1 row affected (0.11 sec)
+
+mysql> mysql> select * from register;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'mysql> select * from register' at line 1
+mysql> select * from register;
++-----+-----+------+
+| sid | cid | sem  |
++-----+-----+------+
+| 101 |   1 | I    |
+| 102 |   2 | III  |
+| 103 |   3 | II   |
+| 104 |   4 | IV   |
+| 105 |   5 | VI   |
++-----+-----+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into teaching(f_id,cid,sem)values(412,1,'I');
+ERROR 1054 (42S22): Unknown column 'f_id' in 'field list'
+mysql> insert into teaching(fid,cid,sem)values(412,1,'I');
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into teaching(fid,cid,sem)values(512,2,'III');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into teaching(fid,cid,sem)values(612,3,'II');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into teaching(fid,cid,sem)values(752,4,'IV');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into teaching(fid,cid,sem)values(852,5,'VI');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from teaching;
++-----+------+------+
+| fid | cid  | sem  |
++-----+------+------+
+| 412 |    1 | I    |
+| 512 |    2 | III  |
+| 612 |    3 | II   |
+| 752 |    4 | IV   |
+| 852 |    5 | VI   |
++-----+------+------+
+5 rows in set (0.00 sec)
+
+mysql> insert into hostel(hid,hname,seats)values(1344,'Modern',150);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into hostel(hid,hname,seats)values(1675,'Flat',170);
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into hostel(hid,hname,seats)values(1125,'Old',130);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into hostel(hid,hname,seats)values(6525,'Btech-hstl',230);
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into hostel(hid,hname,seats)values(7885,'Arts-hstl',220);
+Query OK, 1 row affected (0.13 sec)
+
+mysql> select * from hostel;
++------+------------+-------+
+| hid  | hname      | seats |
++------+------------+-------+
+| 1344 | Modern     |   150 |
+| 1675 | Flat       |   170 |
+| 1125 | Old        |   130 |
+| 6525 | Btech-hstl |   230 |
+| 7885 | Arts-hstl  |   220 |
++------+------------+-------+
+5 rows in set (0.04 sec)
+
+mysql> s
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
