@@ -1,0 +1,52 @@
+mysql> use userinfo
+Database changed
+mysql> show tables;
++--------------------+
+| Tables_in_userinfo |
++--------------------+
+| department         |
+| emp                |
+| empd               |
+| empdet             |
+| employee           |
+| employees          |
+| empp               |
++--------------------+
+7 rows in set (0.00 sec)
+
+mysql> select * from employee;
++--------+----------+------------+----------------+------------+-----------+---------+--------+---------+-------------+
+| emp_no | emp_name | dob        | address        | doj        | mobile_no | dept_no | salary | manager | designation |
++--------+----------+------------+----------------+------------+-----------+---------+--------+---------+-------------+
+|  12343 | amal     | 1988-06-13 | vija house     | 2019-04-05 | 984621399 |     222 |  15000 | vishnu  | clerk       |
+|  12345 | akhil    | 1980-05-12 | kakkadad house | 2020-04-25 | 956345412 |     212 |  15000 | suraj   | clerk       |
+|  12355 | varun    | 1990-08-22 | ajml house     | 2021-04-15 | 984621998 |     252 |  18000 | nowri   | accountant  |
+|  12545 | arjun    | 1988-05-02 | pala house     | 2019-08-25 | 982261378 |     212 |  25000 | suraj   | po          |
++--------+----------+------------+----------------+------------+-----------+---------+--------+---------+-------------+
+4 rows in set (0.08 sec)
+
+mysql> delimiter //
+mysql> create trigger beforeemployee
+    -> before insert on employee for each row
+    -> if new.salary<0 then set new.salary=0;
+    -> end if;
+    -> end;//
+Query OK, 0 rows affected (0.13 sec)
+
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'end' at line 1
+mysql> delimiter ;
+
+mysql> insert into  employee values(12358,'vishnu','1988-01-17','homie','2020-12-14',964512350,222,-52,'arun','po');
+Query OK, 1 row affected (0.39 sec)
+
+mysql> select * from employee;
++--------+----------+------------+----------------+------------+-----------+---------+--------+---------+-------------+
+| emp_no | emp_name | dob        | address        | doj        | mobile_no | dept_no | salary | manager | designation |
++--------+----------+------------+----------------+------------+-----------+---------+--------+---------+-------------+
+|  12343 | amal     | 1988-06-13 | vija house     | 2019-04-05 | 984621399 |     222 |  15000 | vishnu  | clerk       |
+|  12345 | akhil    | 1980-05-12 | kakkadad house | 2020-04-25 | 956345412 |     212 |  15000 | suraj   | clerk       |
+|  12355 | varun    | 1990-08-22 | ajml house     | 2021-04-15 | 984621998 |     252 |  18000 | nowri   | accountant  |
+|  12358 | vishnu   | 1988-01-17 | homie          | 2020-12-14 | 964512350 |     222 |      0 | arun    | po          |
+|  12545 | arjun    | 1988-05-02 | pala house     | 2019-08-25 | 982261378 |     212 |  25000 | suraj   | po          |
++--------+----------+------------+----------------+------------+-----------+---------+--------+---------+-------------+
+5 rows in set (0.00 sec)
